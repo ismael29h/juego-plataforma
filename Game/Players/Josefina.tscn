@@ -1,0 +1,317 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Assets/Players/bunny2_stand.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sounds/Jump.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Players/bunny2_jump.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Players/bunny2_walk2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Players/bunny2_walk1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Items/wing_right.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Items/wing_left.png" type="Texture" id=7]
+[ext_resource path="res://Game/Players/Josefina.gd" type="Script" id=8]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 50.6517
+height = 41.6632
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 34.23, 4.14835 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.172549, 0.141176, 0.141176, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("wing_right:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("wing_left:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fly"
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("wing_left:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -25.0, -50.0, -25.0, 0.0, 25.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("wing_right:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 25.0, 50.0, 25.0, 0.0, -25.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("wing_left:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("wing_right:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "player_enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0823529, 0.0784314, 0.0784314, 1 ), Color( 0.172549, 0.141176, 0.141176, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "player_exit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.172549, 0.141176, 0.141176, 0 ), Color( 0.0823529, 0.0784314, 0.0784314, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "portal"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Josefina" type="KinematicBody2D" groups=["player"]]
+z_index = 50
+z_as_relative = false
+collision_layer = 2
+collision_mask = 28
+script = ExtResource( 8 )
+speed = Vector2( 400, 800 )
+impulse = -5000
+impulse_max = -7000
+gravity = 600
+
+[node name="wing_left" type="Sprite" parent="."]
+visible = false
+position = Vector2( -42.965, 0.179 )
+texture = ExtResource( 7 )
+offset = Vector2( -39.3525, -14.2076 )
+
+[node name="wing_right" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42.9648, 0.179207 )
+texture = ExtResource( 6 )
+offset = Vector2( 41.0352, -14.1792 )
+
+[node name="CollisionBody" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 25.3678 )
+shape = SubResource( 1 )
+
+[node name="CollisionFeet" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 95.7631 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.487, 0 )
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="sound_jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -9.0
+bus = "SFX"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.8, 1.8 )
+limit_bottom = 1000
+drag_margin_h_enabled = true
+drag_margin_top = 0.8
+
+[node name="TimerPowerUpJump" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerPowerUpFly" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/RESET = SubResource( 8 )
+anims/default = SubResource( 4 )
+anims/fly = SubResource( 5 )
+anims/player_enter = SubResource( 9 )
+anims/player_exit = SubResource( 10 )
+anims/portal = SubResource( 7 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.172549, 0.141176, 0.141176, 0 )
+
+[connection signal="timeout" from="TimerPowerUpJump" to="." method="_on_TimerPowerUp_timeout"]
+[connection signal="timeout" from="TimerPowerUpFly" to="." method="_on_TimerPowerUpFly_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

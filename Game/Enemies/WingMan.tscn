@@ -1,0 +1,171 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Enemies/wingMan1.png" type="Texture" id=1]
+[ext_resource path="res://Game/Enemies/WingMan.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Enemies/wingMan4.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/wingMan2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemies/wingMan5.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemies/wingMan3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sounds/wingman_d.wav" type="AudioStream" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.7143, 12.972 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 41.4589, 10.8414 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 200 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("die")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=5]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 4, 3, 2, 1, 0, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.001, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 13.1535 ), Vector2( 0, 5.127 ), Vector2( 0, -98.549 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionDamage:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.001, 0.5, 0.501 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 31.7519 ), Vector2( 0, 36.1342 ), Vector2( 0, -103.308 ), Vector2( 0, -98.5886 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.001, 0.5, 0.501 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 11.2373 ), Vector2( 0, 11.2373 ), Vector2( 0, -123.823 ), Vector2( 0, -123.823 ) ]
+}
+
+[node name="WingMan" type="Area2D"]
+scale = Vector2( 0.7, 0.7 )
+z_index = 45
+z_as_relative = false
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 13.1535 )
+frames = SubResource( 1 )
+animation = "fly"
+
+[node name="CollisionDamage" type="CollisionShape2D" parent="."]
+modulate = Color( 0.870588, 0.12549, 0.12549, 1 )
+position = Vector2( 0, 40.1148 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 11.2373 )
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionJump" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -4.76837e-07, -20.716 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fly"
+anims/die = SubResource( 4 )
+anims/fly = SubResource( 5 )
+
+[node name="die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -6.782
+bus = "SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_WingMan_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

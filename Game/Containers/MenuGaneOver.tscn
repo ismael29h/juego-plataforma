@@ -1,0 +1,279 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/Fonts/Kenney Mini Square.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Environment/ground_grass.png" type="Texture" id=3]
+[ext_resource path="res://Game/Containers/Exit.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Background/bg_layer1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Background/bg_layer2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Items/carrot_gold.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Background/bg_layer3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Players/bunny2_hurt.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Items/carrot.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Environment/grass1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Background/bg_layer4.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sounds/Pickup_coin_gold.wav" type="AudioStream" id=13]
+[ext_resource path="res://Game/Containers/MenuGaneOver.gd" type="Script" id=14]
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("CarrotMenu/Sprite1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CarrotMenu/Sprite2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "use"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CarrotMenu/Sprite1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CarrotMenu/Sprite2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+} ],
+"times": PoolRealArray( -0.1 )
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 68
+outline_size = 4
+outline_color = Color( 0.737255, 0.443137, 0.878431, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 34
+outline_size = 3
+outline_color = Color( 0.737255, 0.443137, 0.878431, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+outline_size = 2
+outline_color = Color( 0.737255, 0.443137, 0.878431, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 23
+outline_color = Color( 0.25098, 0.741176, 0.298039, 1 )
+font_data = ExtResource( 1 )
+
+[node name="MenuGaneOver" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -9.0
+margin_right = -9.0
+script = ExtResource( 14 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -2 )
+motion_mirroring = Vector2( 2048, 2048 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer1"]
+margin_top = -1480.0
+margin_right = 2048.0
+margin_bottom = 568.0
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_top = -831.0
+margin_right = 2048.0
+margin_bottom = 1217.0
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+margin_top = -985.0
+margin_right = 2048.0
+margin_bottom = 1063.0
+texture = ExtResource( 8 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+margin_left = 2.0
+margin_top = -1043.0
+margin_right = 2050.0
+margin_bottom = 1005.0
+texture = ExtResource( 12 )
+
+[node name="GroundGrass" type="Sprite" parent="."]
+position = Vector2( 296, 477 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Grass1" type="Sprite" parent="GroundGrass"]
+position = Vector2( 122, -78.0001 )
+scale = Vector2( 1.31034, 1.38596 )
+texture = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 287, 411 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="CarrotMenu" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 4 )
+anims/use = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="CarrotMenu"]
+position = Vector2( 582.4, 324 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+
+[node name="Sprite1" type="Sprite" parent="CarrotMenu"]
+visible = false
+position = Vector2( 582.4, 324 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 11.0
+margin_top = 250.0
+margin_right = 470.0
+margin_bottom = 352.0
+rect_rotation = -32.3801
+custom_fonts/font = SubResource( 6 )
+text = "Game Over"
+
+[node name="Score" type="Label" parent="."]
+margin_left = 420.0
+margin_top = 185.0
+margin_right = 753.0
+margin_bottom = 258.0
+rect_rotation = -8.26069
+custom_fonts/font = SubResource( 7 )
+text = "Puntaje: "
+
+[node name="Record" type="Label" parent="."]
+margin_left = 453.0
+margin_top = 472.0
+margin_right = 786.0
+margin_bottom = 545.0
+rect_rotation = 0.15718
+custom_fonts/font = SubResource( 8 )
+text = "Récord: "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -359.0
+margin_top = -8.0
+margin_right = -171.0
+margin_bottom = 66.0
+
+[node name="Retry" type="Button" parent="VBoxContainer"]
+self_modulate = Color( 0.65098, 0.776471, 0.913725, 1 )
+margin_right = 188.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "Reintentar"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+self_modulate = Color( 0.65098, 0.776471, 0.913725, 1 )
+margin_top = 39.0
+margin_right = 188.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "Menu"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+self_modulate = Color( 0.890196, 0.45098, 0.92549, 1 )
+margin_top = 78.0
+margin_right = 188.0
+margin_bottom = 113.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "Salir"
+script = ExtResource( 4 )
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer/Exit" method="_on_pressed"]

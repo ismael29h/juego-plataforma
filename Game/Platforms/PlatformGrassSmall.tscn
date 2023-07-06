@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Game/Platforms/PlatformBaseSmall.tscn" type="PackedScene" id=1]
+
+[node name="PlatformGrassSmall" instance=ExtResource( 1 )]
+position = Vector2( 113, 54 )
+scale = Vector2( 0.3, 0.4 )

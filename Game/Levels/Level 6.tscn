@@ -1,0 +1,159 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Game/Levels/LevelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Enemies/WingMan.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Objects/Items/Carrot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Platforms/PlatformGrassBig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/Platforms/PlatformGrass.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Game/Objects/Traps/Spikes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game/Objects/Items/Spring.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game/Platforms/PlatformGrassSmall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game/Platforms/PlatformTrap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Game/Objects/Items/CoinSilver.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Game/Objects/Items/CoinGold.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Game/Objects/Items/CoinBronze.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Environment/grass2.png" type="Texture" id=13]
+
+[node name="Level 6" instance=ExtResource( 1 )]
+
+[node name="MenuPause" parent="FrontLayer" index="1"]
+visible = false
+
+[node name="Josefina" parent="." index="2"]
+position = Vector2( 243.988, 274 )
+
+[node name="PlatformGrass" parent="Plataforms/Normal" index="0" instance=ExtResource( 5 )]
+position = Vector2( 243, 347.327 )
+
+[node name="PlatformGrass2" parent="Plataforms/Normal" index="1" instance=ExtResource( 5 )]
+position = Vector2( 742, 434 )
+
+[node name="PlatformGrass3" parent="Plataforms/Normal" index="2" instance=ExtResource( 5 )]
+position = Vector2( 1155, 219 )
+
+[node name="PlatformGrassSmall3" parent="Plataforms/Small" index="0" instance=ExtResource( 8 )]
+position = Vector2( -31, 341 )
+
+[node name="PlatformGrassSmall4" parent="Plataforms/Small" index="1" instance=ExtResource( 8 )]
+position = Vector2( -248, 37 )
+
+[node name="PlatformGrassSmall5" parent="Plataforms/Small" index="2" instance=ExtResource( 8 )]
+position = Vector2( -367, 315 )
+
+[node name="PlatformGrassSmall6" parent="Plataforms/Small" index="3" instance=ExtResource( 8 )]
+position = Vector2( -218, 668 )
+
+[node name="PlatformGrassSmall7" parent="Plataforms/Small" index="4" instance=ExtResource( 8 )]
+position = Vector2( 419, 432 )
+
+[node name="PlatformGrassBig" parent="Plataforms/Big" index="0" instance=ExtResource( 4 )]
+position = Vector2( 279, 764 )
+
+[node name="Spring" parent="Objects" index="0" instance=ExtResource( 7 )]
+position = Vector2( -33, 323 )
+
+[node name="Spring2" parent="Objects" index="1" instance=ExtResource( 7 )]
+position = Vector2( 559, 738 )
+
+[node name="Decor" type="Node" parent="Objects" index="2"]
+
+[node name="Grass2" type="Sprite" parent="Objects/Decor" index="0"]
+position = Vector2( 127, 708 )
+z_index = -100
+texture = ExtResource( 13 )
+
+[node name="WingMan" parent="Enemies" index="0" instance=ExtResource( 2 )]
+position = Vector2( 985, 490 )
+
+[node name="CoinGold" parent="Coins" index="0" instance=ExtResource( 11 )]
+position = Vector2( 1156, 122 )
+
+[node name="CoinGold2" parent="Coins" index="1" instance=ExtResource( 11 )]
+position = Vector2( 1226, 122 )
+
+[node name="CoinGold3" parent="Coins" index="2" instance=ExtResource( 11 )]
+position = Vector2( 1085, 122 )
+
+[node name="CoinGold4" parent="Coins" index="3" instance=ExtResource( 11 )]
+position = Vector2( 1085, 47 )
+
+[node name="CoinGold5" parent="Coins" index="4" instance=ExtResource( 11 )]
+position = Vector2( 1155, 47 )
+
+[node name="CoinGold6" parent="Coins" index="5" instance=ExtResource( 11 )]
+position = Vector2( 1225, 47 )
+
+[node name="CoinSilver" parent="Coins" index="6" instance=ExtResource( 10 )]
+position = Vector2( -34, -178 )
+
+[node name="CoinSilver2" parent="Coins" index="7" instance=ExtResource( 10 )]
+position = Vector2( -34, -102 )
+
+[node name="CoinSilver5" parent="Coins" index="8" instance=ExtResource( 10 )]
+position = Vector2( -34, -12 )
+
+[node name="CoinSilver6" parent="Coins" index="9" instance=ExtResource( 10 )]
+position = Vector2( -34, 66 )
+
+[node name="CoinSilver7" parent="Coins" index="10" instance=ExtResource( 10 )]
+position = Vector2( -34, -255 )
+
+[node name="CoinSilver3" parent="Coins" index="11" instance=ExtResource( 10 )]
+position = Vector2( -365, 206 )
+
+[node name="CoinSilver4" parent="Coins" index="12" instance=ExtResource( 10 )]
+position = Vector2( -213, 558 )
+
+[node name="CoinBronze" parent="Coins" index="13" instance=ExtResource( 12 )]
+position = Vector2( 27, 662 )
+
+[node name="CoinBronze2" parent="Coins" index="14" instance=ExtResource( 12 )]
+position = Vector2( 148, 662 )
+
+[node name="CoinBronze3" parent="Coins" index="15" instance=ExtResource( 12 )]
+position = Vector2( 271, 662 )
+
+[node name="CoinBronze5" parent="Coins" index="16" instance=ExtResource( 12 )]
+position = Vector2( 415, 343 )
+
+[node name="CoinBronze4" parent="Coins" index="17" instance=ExtResource( 12 )]
+position = Vector2( 400, 662 )
+
+[node name="CoinBronze6" parent="Coins" index="18" instance=ExtResource( 12 )]
+position = Vector2( -37, 662 )
+
+[node name="CoinBronze7" parent="Coins" index="19" instance=ExtResource( 12 )]
+position = Vector2( 84, 662 )
+
+[node name="CoinBronze8" parent="Coins" index="20" instance=ExtResource( 12 )]
+position = Vector2( 207, 662 )
+
+[node name="CoinBronze9" parent="Coins" index="21" instance=ExtResource( 12 )]
+position = Vector2( 336, 662 )
+
+[node name="Carrot" parent="Carrots" index="0" instance=ExtResource( 3 )]
+position = Vector2( -244, -54 )
+
+[node name="Carrot2" parent="Carrots" index="1" instance=ExtResource( 3 )]
+position = Vector2( -372, 86 )
+
+[node name="Carrot3" parent="Carrots" index="2" instance=ExtResource( 3 )]
+position = Vector2( -219, 363 )
+
+[node name="Carrot4" parent="Carrots" index="3" instance=ExtResource( 3 )]
+position = Vector2( 741, 341 )
+
+[node name="Spikes" parent="Traps" index="0" instance=ExtResource( 6 )]
+position = Vector2( -23, 378 )
+is_trap = true
+
+[node name="Spikes3" parent="Traps" index="1" instance=ExtResource( 6 )]
+position = Vector2( 247, 386.327 )
+is_trap = true
+
+[node name="PlatformTrap" parent="Traps" index="2" instance=ExtResource( 9 )]
+position = Vector2( -458, 832 )
+
+[node name="Portal" parent="." index="10"]
+position = Vector2( -456, 728 )
+next_level = "res://Game/Levels/Level 7.tscn"

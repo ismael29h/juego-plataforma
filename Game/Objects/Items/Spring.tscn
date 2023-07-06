@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Sounds/Jump.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Items/spring_in.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Items/spring.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Items/spring_out.png" type="Texture" id=4]
+[ext_resource path="res://Game/Objects/Items/Spring.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ejection"
+length = 0.5
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite-in:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.22, 0.42, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite-idle:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.22, 0.42, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite-out:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.22, 0.42, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true, false, false ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite-idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 71.2608, 19.1142 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 91.6487, 19.511 )
+
+[node name="Spring" type="StaticBody2D"]
+position = Vector2( 0, -0.198425 )
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( 5 )
+
+[node name="Sprite-idle" type="Sprite" parent="."]
+position = Vector2( 0, -38.4945 )
+texture = ExtResource( 3 )
+
+[node name="Sprite-in" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -28.5732 )
+texture = ExtResource( 2 )
+
+[node name="Sprite-out" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -53.5216 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ejection = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -9.0
+bus = "SFX"
+
+[node name="Ejection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ejection"]
+modulate = Color( 0.756863, 0.372549, 0.623529, 1 )
+position = Vector2( 0, -57.1464 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -18.2551 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Ejection" to="." method="_on_Ejection_body_entered"]
